@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # Assessment Rubric Agent API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: assessment-rubric-agent
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - INTELLIGENCE_CSV_PATH=/app/data/semantic_intelligence.csv
+      # Optional: Redis for caching
+      - REDIS_URL=redis://redis:6379/0
+      # Optional: Database connection
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/rubric_db
+    volumes:
+      - ./outputs:/app/outputs
+      - ./logs:/app/logs
+      - ./semantic_intelligence.csv:/app/data/semantic_intelligence.csv:ro
+    depends_on:
+      - redis
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - rubric-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: rubric-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - rubric-network
+    command: redis-server --appendonly yes
+
+  # Optional: PostgreSQL for persistence
+  postgres:
+    image: postgres:16-alpine
+    container_name: rubric-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rubric_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - rubric-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Nginx reverse proxy (optional)
+  nginx:
+    image: nginx:alpine
+    container_name: rubric-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./config/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - rubric-network
+    profiles:
+      - production
+
+volumes:
+  redis-data:
+  postgres-data:
+
+networks:
+  rubric-network:
+    driver: bridge
