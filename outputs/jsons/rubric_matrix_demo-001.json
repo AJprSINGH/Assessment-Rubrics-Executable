@@ -1,0 +1,635 @@
+{
+  "rubric_id": "RUBRIC_FF226D8D",
+  "version": "1.0",
+  "generated_at": "2026-06-25 04:00:59.783963",
+  "cio_centric": true,
+  "assessment_information": {
+    "board": "CBSE",
+    "grade": 10,
+    "subject": "Science",
+    "unit": "Chemical Reactions",
+    "chapter": "Chemical Reactions and Equations",
+    "assignment_name": "Chemical Reactions Investigation Project",
+    "project_type": "Research & Design Project",
+    "assessment_type": "Project",
+    "rubric_type": "Analytical",
+    "total_marks": 50,
+    "performance_scale": [
+      "Exemplary",
+      "Proficient",
+      "Developing",
+      "Beginning"
+    ]
+  },
+  "context": {
+    "class_size": 35,
+    "student_profile": "Mixed ability",
+    "time_duration": "2 weeks",
+    "available_resources": [
+      "Textbook",
+      "Lab equipment",
+      "Internet"
+    ],
+    "differentiation_required": true,
+    "inclusion_considerations": []
+  },
+  "criteria": [
+    {
+      "criterion_id": "CRIT_01",
+      "criterion_name": "Concept Understanding",
+      "description": "Demonstrates understanding of key concepts and definitions",
+      "concept_ids": [],
+      "concept_names": [],
+      "learning_outcome_ids": [],
+      "learning_outcome_statements": [],
+      "blooms_level": "Understand",
+      "competency_ids": [],
+      "observable_behaviours": [
+        {
+          "behaviour": "Accurately explains concepts",
+          "assessment_method": "Verbal explanation, Written test",
+          "evidence_required": "Explanation matches established definitions"
+        },
+        {
+          "behaviour": "Identifies key components",
+          "assessment_method": "Diagram labeling, List creation",
+          "evidence_required": "Correct identification of components"
+        }
+      ],
+      "success_indicators": [
+        {
+          "indicator": "Explains core concepts accurately",
+          "description": "Demonstrates understanding of key concepts and definitions",
+          "blooms_level": "Understand",
+          "observable": true
+        }
+      ],
+      "performance_descriptors": [
+        {
+          "level": "Exemplary",
+          "description": "Demonstrates comprehensive understanding with precise definitions and examples",
+          "marks_range": {
+            "min": 10,
+            "max": 12
+          },
+          "key_characteristics": [
+            "Consistently demonstrates mastery",
+            "Exceeds requirements",
+            "Shows deep understanding",
+            "Work is polished and complete"
+          ]
+        },
+        {
+          "level": "Proficient",
+          "description": "Demonstrates clear understanding of core concepts",
+          "marks_range": {
+            "min": 9,
+            "max": 10
+          },
+          "key_characteristics": [
+            "Meets all requirements",
+            "Demonstrates solid understanding",
+            "Work is complete and accurate",
+            "Minor improvements possible"
+          ]
+        },
+        {
+          "level": "Developing",
+          "description": "Shows partial understanding with some misconceptions",
+          "marks_range": {
+            "min": 7,
+            "max": 8
+          },
+          "key_characteristics": [
+            "Meets some requirements",
+            "Shows basic understanding",
+            "Some errors present",
+            "Additional work needed"
+          ]
+        },
+        {
+          "level": "Beginning",
+          "description": "Shows significant gaps in understanding",
+          "marks_range": {
+            "min": 0,
+            "max": 7
+          },
+          "key_characteristics": [
+            "Few requirements met",
+            "Significant gaps in understanding",
+            "Multiple errors present",
+            "Extensive revision needed"
+          ]
+        }
+      ],
+      "evidence_definitions": [
+        {
+          "evidence_type": "Written explanation",
+          "description": "Written or verbal explanation of concepts",
+          "collection_method": "Quiz, Oral test, Written test"
+        },
+        {
+          "evidence_type": "Verbal Explanation",
+          "description": "Oral or written explanation of concepts",
+          "collection_method": "Interview, Quiz, Written test"
+        },
+        {
+          "evidence_type": "Diagram/Visual",
+          "description": "Accurate diagrams or visual representations",
+          "collection_method": "Assignment submission"
+        }
+      ],
+      "total_marks": 12,
+      "marks_percentage": 24.0,
+      "teacher_notes": null,
+      "common_misconceptions": []
+    },
+    {
+      "criterion_id": "CRIT_02",
+      "criterion_name": "Application of Knowledge",
+      "description": "Applies concepts to solve problems and complete tasks",
+      "concept_ids": [],
+      "concept_names": [],
+      "learning_outcome_ids": [],
+      "learning_outcome_statements": [],
+      "blooms_level": "Apply",
+      "competency_ids": [],
+      "observable_behaviours": [
+        {
+          "behaviour": "Applies concepts correctly",
+          "assessment_method": "Problem solving, Practical demonstration",
+          "evidence_required": "Correct application with explanation"
+        },
+        {
+          "behaviour": "Selects appropriate methods",
+          "assessment_method": "Solution presentation",
+          "evidence_required": "Method matches problem requirements"
+        }
+      ],
+      "success_indicators": [
+        {
+          "indicator": "Applies core concepts accurately",
+          "description": "Applies concepts to solve problems and complete tasks",
+          "blooms_level": "Apply",
+          "observable": true
+        }
+      ],
+      "performance_descriptors": [
+        {
+          "level": "Exemplary",
+          "description": "Applies concepts creatively to solve novel problems",
+          "marks_range": {
+            "min": 10,
+            "max": 12
+          },
+          "key_characteristics": [
+            "Consistently demonstrates mastery",
+            "Exceeds requirements",
+            "Shows deep understanding",
+            "Work is polished and complete"
+          ]
+        },
+        {
+          "level": "Proficient",
+          "description": "Applies concepts correctly to standard problems",
+          "marks_range": {
+            "min": 9,
+            "max": 10
+          },
+          "key_characteristics": [
+            "Meets all requirements",
+            "Demonstrates solid understanding",
+            "Work is complete and accurate",
+            "Minor improvements possible"
+          ]
+        },
+        {
+          "level": "Developing",
+          "description": "Applies concepts with errors or inconsistencies",
+          "marks_range": {
+            "min": 7,
+            "max": 8
+          },
+          "key_characteristics": [
+            "Meets some requirements",
+            "Shows basic understanding",
+            "Some errors present",
+            "Additional work needed"
+          ]
+        },
+        {
+          "level": "Beginning",
+          "description": "Unable to apply concepts without extensive support",
+          "marks_range": {
+            "min": 0,
+            "max": 7
+          },
+          "key_characteristics": [
+            "Few requirements met",
+            "Significant gaps in understanding",
+            "Multiple errors present",
+            "Extensive revision needed"
+          ]
+        }
+      ],
+      "evidence_definitions": [
+        {
+          "evidence_type": "Problem solution",
+          "description": "Completed problems showing application",
+          "collection_method": "Worksheet, Project submission"
+        },
+        {
+          "evidence_type": "Problem Solution",
+          "description": "Completed problems showing application",
+          "collection_method": "Worksheet, Project submission"
+        },
+        {
+          "evidence_type": "Practical Demonstration",
+          "description": "Hands-on demonstration of skills",
+          "collection_method": "Lab work, Performance task"
+        }
+      ],
+      "total_marks": 12,
+      "marks_percentage": 24.0,
+      "teacher_notes": null,
+      "common_misconceptions": []
+    },
+    {
+      "criterion_id": "CRIT_03",
+      "criterion_name": "Communication and Presentation",
+      "description": "Effectively communicates understanding through various media",
+      "concept_ids": [],
+      "concept_names": [],
+      "learning_outcome_ids": [],
+      "learning_outcome_statements": [],
+      "blooms_level": "Understand",
+      "competency_ids": [
+        "COMP_GEN_Communication"
+      ],
+      "observable_behaviours": [
+        {
+          "behaviour": "Uses appropriate terminology",
+          "assessment_method": "Written work, Oral presentation",
+          "evidence_required": "Correct use of subject vocabulary"
+        },
+        {
+          "behaviour": "Organizes information clearly",
+          "assessment_method": "Report review, Presentation",
+          "evidence_required": "Logical structure and flow"
+        }
+      ],
+      "success_indicators": [
+        {
+          "indicator": "Explains core concepts accurately",
+          "description": "Effectively communicates understanding through various media",
+          "blooms_level": "Understand",
+          "observable": true
+        }
+      ],
+      "performance_descriptors": [
+        {
+          "level": "Exemplary",
+          "description": "Communicates with exceptional clarity and professionalism",
+          "marks_range": {
+            "min": 6,
+            "max": 7
+          },
+          "key_characteristics": [
+            "Consistently demonstrates mastery",
+            "Exceeds requirements",
+            "Shows deep understanding",
+            "Work is polished and complete"
+          ]
+        },
+        {
+          "level": "Proficient",
+          "description": "Communicates clearly using appropriate terminology",
+          "marks_range": {
+            "min": 5,
+            "max": 6
+          },
+          "key_characteristics": [
+            "Meets all requirements",
+            "Demonstrates solid understanding",
+            "Work is complete and accurate",
+            "Minor improvements possible"
+          ]
+        },
+        {
+          "level": "Developing",
+          "description": "Communication has some clarity issues",
+          "marks_range": {
+            "min": 4,
+            "max": 5
+          },
+          "key_characteristics": [
+            "Meets some requirements",
+            "Shows basic understanding",
+            "Some errors present",
+            "Additional work needed"
+          ]
+        },
+        {
+          "level": "Beginning",
+          "description": "Communication is unclear or inappropriate",
+          "marks_range": {
+            "min": 0,
+            "max": 4
+          },
+          "key_characteristics": [
+            "Few requirements met",
+            "Significant gaps in understanding",
+            "Multiple errors present",
+            "Extensive revision needed"
+          ]
+        }
+      ],
+      "evidence_definitions": [
+        {
+          "evidence_type": "Work sample",
+          "description": "Sample of completed work",
+          "collection_method": "Submission review"
+        },
+        {
+          "evidence_type": "Written Work",
+          "description": "Clear, organized written communication",
+          "collection_method": "Report, Essay submission"
+        },
+        {
+          "evidence_type": "Oral Presentation",
+          "description": "Effective verbal presentation",
+          "collection_method": "Presentation observation"
+        },
+        {
+          "evidence_type": "Visual Aid",
+          "description": "Appropriate use of visual materials",
+          "collection_method": "Presentation materials"
+        }
+      ],
+      "total_marks": 7,
+      "marks_percentage": 14.000000000000002,
+      "teacher_notes": null,
+      "common_misconceptions": []
+    },
+    {
+      "criterion_id": "CRIT_04",
+      "criterion_name": "Creativity and Innovation",
+      "description": "Demonstrates creative thinking and innovative approaches",
+      "concept_ids": [],
+      "concept_names": [],
+      "learning_outcome_ids": [],
+      "learning_outcome_statements": [],
+      "blooms_level": "Create",
+      "competency_ids": [],
+      "observable_behaviours": [
+        {
+          "behaviour": "Generates original ideas",
+          "assessment_method": "Portfolio review, Presentation",
+          "evidence_required": "Original work with justification"
+        }
+      ],
+      "success_indicators": [
+        {
+          "indicator": "Creates core concepts accurately",
+          "description": "Demonstrates creative thinking and innovative approaches",
+          "blooms_level": "Create",
+          "observable": true
+        }
+      ],
+      "performance_descriptors": [
+        {
+          "level": "Exemplary",
+          "description": "Produces highly original and innovative work",
+          "marks_range": {
+            "min": 6,
+            "max": 7
+          },
+          "key_characteristics": [
+            "Consistently demonstrates mastery",
+            "Exceeds requirements",
+            "Shows deep understanding",
+            "Work is polished and complete"
+          ]
+        },
+        {
+          "level": "Proficient",
+          "description": "Demonstrates creative thinking in work",
+          "marks_range": {
+            "min": 5,
+            "max": 6
+          },
+          "key_characteristics": [
+            "Meets all requirements",
+            "Demonstrates solid understanding",
+            "Work is complete and accurate",
+            "Minor improvements possible"
+          ]
+        },
+        {
+          "level": "Developing",
+          "description": "Shows some creative elements",
+          "marks_range": {
+            "min": 4,
+            "max": 5
+          },
+          "key_characteristics": [
+            "Meets some requirements",
+            "Shows basic understanding",
+            "Some errors present",
+            "Additional work needed"
+          ]
+        },
+        {
+          "level": "Beginning",
+          "description": "Work lacks creative elements",
+          "marks_range": {
+            "min": 0,
+            "max": 4
+          },
+          "key_characteristics": [
+            "Few requirements met",
+            "Significant gaps in understanding",
+            "Multiple errors present",
+            "Extensive revision needed"
+          ]
+        }
+      ],
+      "evidence_definitions": [
+        {
+          "evidence_type": "Original work product",
+          "description": "Novel solutions or creative products",
+          "collection_method": "Portfolio, Project submission"
+        },
+        {
+          "evidence_type": "Original Product",
+          "description": "Created artifact or solution",
+          "collection_method": "Portfolio review"
+        },
+        {
+          "evidence_type": "Design Process",
+          "description": "Evidence of creative process",
+          "collection_method": "Sketches, drafts, reflections"
+        }
+      ],
+      "total_marks": 7,
+      "marks_percentage": 14.000000000000002,
+      "teacher_notes": null,
+      "common_misconceptions": []
+    },
+    {
+      "criterion_id": "CRIT_05",
+      "criterion_name": "Collaboration and Teamwork",
+      "description": "Works effectively with others and contributes to group success",
+      "concept_ids": [],
+      "concept_names": [],
+      "learning_outcome_ids": [],
+      "learning_outcome_statements": [],
+      "blooms_level": "Analyze",
+      "competency_ids": [],
+      "observable_behaviours": [],
+      "success_indicators": [
+        {
+          "indicator": "Analyzes core concepts accurately",
+          "description": "Works effectively with others and contributes to group success",
+          "blooms_level": "Analyze",
+          "observable": true
+        }
+      ],
+      "performance_descriptors": [
+        {
+          "level": "Exemplary",
+          "description": "Provides thorough analysis with multiple perspectives",
+          "marks_range": {
+            "min": 4,
+            "max": 5
+          },
+          "key_characteristics": [
+            "Consistently demonstrates mastery",
+            "Exceeds requirements",
+            "Shows deep understanding",
+            "Work is polished and complete"
+          ]
+        },
+        {
+          "level": "Proficient",
+          "description": "Analyzes situations accurately",
+          "marks_range": {
+            "min": 3,
+            "max": 4
+          },
+          "key_characteristics": [
+            "Meets all requirements",
+            "Demonstrates solid understanding",
+            "Work is complete and accurate",
+            "Minor improvements possible"
+          ]
+        },
+        {
+          "level": "Developing",
+          "description": "Identifies some elements but incomplete analysis",
+          "marks_range": {
+            "min": 3,
+            "max": 3
+          },
+          "key_characteristics": [
+            "Meets some requirements",
+            "Shows basic understanding",
+            "Some errors present",
+            "Additional work needed"
+          ]
+        },
+        {
+          "level": "Beginning",
+          "description": "Unable to analyze situations",
+          "marks_range": {
+            "min": 0,
+            "max": 2
+          },
+          "key_characteristics": [
+            "Few requirements met",
+            "Significant gaps in understanding",
+            "Multiple errors present",
+            "Extensive revision needed"
+          ]
+        }
+      ],
+      "evidence_definitions": [
+        {
+          "evidence_type": "Work sample",
+          "description": "Sample of completed work",
+          "collection_method": "Submission review"
+        },
+        {
+          "evidence_type": "Group Contribution",
+          "description": "Documented contribution to group work",
+          "collection_method": "Peer evaluation, Log entries"
+        },
+        {
+          "evidence_type": "Team Interaction",
+          "description": "Evidence of effective teamwork",
+          "collection_method": "Observation, Group reflection"
+        }
+      ],
+      "total_marks": 5,
+      "marks_percentage": 10.0,
+      "teacher_notes": null,
+      "common_misconceptions": []
+    }
+  ],
+  "performance_levels": [
+    {
+      "level": "Exemplary",
+      "description": "Exceeds expectations",
+      "marks_range": {
+        "min": 90,
+        "max": 100
+      },
+      "colour_code": "#2E7D32",
+      "generic_characteristics": []
+    },
+    {
+      "level": "Proficient",
+      "description": "Meets expectations",
+      "marks_range": {
+        "min": 75,
+        "max": 89
+      },
+      "colour_code": "#1976D2",
+      "generic_characteristics": []
+    },
+    {
+      "level": "Developing",
+      "description": "Approaching expectations",
+      "marks_range": {
+        "min": 60,
+        "max": 74
+      },
+      "colour_code": "#FFA000",
+      "generic_characteristics": []
+    },
+    {
+      "level": "Beginning",
+      "description": "Below expectations",
+      "marks_range": {
+        "min": 0,
+        "max": 59
+      },
+      "colour_code": "#D32F2F",
+      "generic_characteristics": []
+    }
+  ],
+  "learning_outcome_alignment": {
+    "alignments": [],
+    "coverage_percentage": 100.0,
+    "total_outcomes": 0,
+    "aligned_outcomes": 0
+  },
+  "marks_distribution": {
+    "Concept Understanding": 24.0,
+    "Application of Knowledge": 24.0,
+    "Communication and Presentation": 14.000000000000002,
+    "Creativity and Innovation": 14.000000000000002,
+    "Collaboration and Teamwork": 10.0
+  },
+  "total_marks": 50
+}
