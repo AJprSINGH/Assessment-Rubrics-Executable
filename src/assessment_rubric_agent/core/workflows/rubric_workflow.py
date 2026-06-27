@@ -1,5 +1,5 @@
 """
-LangGraph Workflow for Assessment Rubric Agent v0.1
+Workflow for Assessment Rubric Agent v0.1
 Orchestrates the complete rubric generation pipeline.
 """
 
@@ -8,8 +8,7 @@ from __future__ import annotations
 import logging
 import time
 from datetime import datetime
-from typing import TypedDict, Optional
-from langgraph.graph import StateGraph, END
+from typing import TypedDict, Optional, Dict, Any, List
 
 from ..schemas.intelligence_objects import (
     FullIntelligenceObject, ConceptIntelligence, LearningOutcomeIntelligence,
@@ -32,48 +31,37 @@ logger = logging.getLogger(__name__)
 
 
 class WorkflowState(TypedDict):
-    """State passed through the LangGraph workflow"""
-    # Request
+    """State passed through the workflow"""
     request: RubricGenerationRequest
-    
-    # Intelligence objects
     curriculum_intelligence: Optional[dict]
-    concept_intelligence: list[ConceptIntelligence]
-    learning_outcome_intelligence: list[LearningOutcomeIntelligence]
+    concept_intelligence: List[Any]
+    learning_outcome_intelligence: List[Any]
     ksa_intelligence: Optional[dict]
-    competency_intelligence: list[CompetencyIntelligence]
-    
-    # Engine outputs
-    extracted_outcomes: list[LearningOutcomeIntelligence]
-    identified_concepts: list[ConceptIntelligence]
-    mapped_competencies: list[CompetencyIntelligence]
-    generated_criteria: list[RubricCriterion]
-    performance_levels: list[PerformanceLevel]
-    criterion_descriptors: dict
-    marks_distribution: dict
-    
-    # Final outputs
+    competency_intelligence: List[Any]
+    extracted_outcomes: List[Any]
+    identified_concepts: List[Any]
+    mapped_competencies: List[Any]
+    generated_criteria: List[Any]
+    performance_levels: List[Any]
+    criterion_descriptors: Dict[str, Any]
+    marks_distribution: Dict[str, float]
     rubric_matrix: Optional[RubricMatrix]
     teacher_content: Optional[TeacherRubricContent]
     student_content: Optional[StudentRubricContent]
     teacher_pdf_path: Optional[str]
     student_pdf_path: Optional[str]
     json_path: Optional[str]
-    
-    # Metadata
-    errors: list[str]
-    warnings: list[str]
+    errors: List[str]
+    warnings: List[str]
     start_time: float
-    cios_used: list[str]
-    
-    # Validation
+    cios_used: List[str]
     validation_passed: bool
     alignment_coverage: float
 
 
 class RubricGenerationWorkflow:
     """
-    LangGraph workflow for orchestrating rubric generation.
+    Workflow orchestrating rubric generation.
     
     Steps:
     1. Receive Assessment Request
@@ -106,41 +94,6 @@ class RubricGenerationWorkflow:
         self.scale_generator = PerformanceScaleGenerator()
         self.evidence_generator = EvidenceDefinitionGenerator()
         self.assembly_engine = RubricAssemblyEngine()
-        
-        # Build workflow graph
-        self.graph = self._build_graph()
-    
-    def _build_graph(self) -> StateGraph:
-        """Build the LangGraph state machine"""
-        workflow = StateGraph(WorkflowState)
-        
-        # Add nodes
-        workflow.add_node("load_intelligence", self._load_intelligence)
-        workflow.add_node("extract_outcomes", self._extract_outcomes)
-        workflow.add_node("identify_concepts", self._identify_concepts)
-        workflow.add_node("map_competencies", self._map_competencies)
-        workflow.add_node("generate_criteria", self._generate_criteria)
-        workflow.add_node("generate_performance_scale", self._generate_performance_scale)
-        workflow.add_node("generate_evidence", self._generate_evidence)
-        workflow.add_node("assemble_rubric", self._assemble_rubric)
-        workflow.add_node("generate_outputs", self._generate_outputs)
-        workflow.add_node("finalize", self._finalize)
-        
-        # Define edges
-        workflow.set_entry_point("load_intelligence")
-        
-        workflow.add_edge("load_intelligence", "extract_outcomes")
-        workflow.add_edge("extract_outcomes", "identify_concepts")
-        workflow.add_edge("identify_concepts", "map_competencies")
-        workflow.add_edge("map_competencies", "generate_criteria")
-        workflow.add_edge("generate_criteria", "generate_performance_scale")
-        workflow.add_edge("generate_performance_scale", "generate_evidence")
-        workflow.add_edge("generate_evidence", "assemble_rubric")
-        workflow.add_edge("assemble_rubric", "generate_outputs")
-        workflow.add_edge("generate_outputs", "finalize")
-        workflow.add_edge("finalize", END)
-        
-        return workflow.compile()
     
     async def execute(self, request: RubricGenerationRequest) -> RubricGenerationResponse:
         """
@@ -156,7 +109,7 @@ class RubricGenerationWorkflow:
         logger.info(f"Starting rubric generation workflow for: {request.assignment.assignment_name}")
         
         # Initialize state
-        initial_state: WorkflowState = {
+        state: WorkflowState = {
             "request": request,
             "curriculum_intelligence": None,
             "concept_intelligence": [],
@@ -184,49 +137,69 @@ class RubricGenerationWorkflow:
             "alignment_coverage": 0.0
         }
         
-        # Execute graph
+        # Execute workflow steps sequentially
         try:
-            final_state = await self.graph.ainvoke(initial_state)
+            # Step 1-3: Load intelligence
+            state = await self._load_intelligence(state)
             
-            # Build response
-            response = RubricGenerationResponse(
-                request_id=request.request_id,
-                status="success" if final_state["validation_passed"] else "partial",
-                rubric_matrix=final_state["rubric_matrix"],
-                teacher_rubric_pdf_path=final_state["teacher_pdf_path"],
-                student_rubric_pdf_path=final_state["student_pdf_path"],
-                teacher_content=final_state["teacher_content"],
-                student_content=final_state["student_content"],
-                alignment_verified=final_state["validation_passed"],
-                alignment_coverage=final_state["alignment_coverage"],
-                generation_time_seconds=time.time() - start_time,
-                cios_used=final_state["cios_used"],
-                errors=final_state["errors"],
-                warnings=final_state["warnings"]
-            )
+            # Step 4: Extract outcomes
+            state = await self._extract_outcomes(state)
             
-            logger.info(f"Workflow completed in {time.time() - start_time:.2f}s")
-            return response
+            # Step 5: Identify concepts
+            state = await self._identify_concepts(state)
+            
+            # Step 6-8: Map competencies
+            state = await self._map_competencies(state)
+            
+            # Step 9: Generate criteria
+            state = await self._generate_criteria(state)
+            
+            # Step 10-11: Generate performance scale
+            state = await self._generate_performance_scale(state)
+            
+            # Step 12: Generate evidence
+            state = await self._generate_evidence(state)
+            
+            # Step 13-14: Assemble rubric
+            state = await self._assemble_rubric(state)
+            
+            # Generate outputs
+            state = await self._generate_outputs(state)
+            
+            # Finalize
+            state = await self._finalize(state)
             
         except Exception as e:
             logger.error(f"Workflow failed: {e}")
-            return RubricGenerationResponse(
-                request_id=request.request_id,
-                status="failed",
-                errors=[str(e)],
-                generation_time_seconds=time.time() - start_time
-            )
-    
-    # ==================== NODE FUNCTIONS ====================
+            state["errors"].append(str(e))
+        
+        # Build response
+        response = RubricGenerationResponse(
+            request_id=request.request_id,
+            status="success" if state["validation_passed"] else ("partial" if state["rubric_matrix"] else "failed"),
+            rubric_matrix=state["rubric_matrix"],
+            teacher_rubric_pdf_path=state["teacher_pdf_path"],
+            student_rubric_pdf_path=state["student_pdf_path"],
+            teacher_content=state["teacher_content"],
+            student_content=state["student_content"],
+            alignment_verified=state["validation_passed"],
+            alignment_coverage=state["alignment_coverage"],
+            generation_time_seconds=time.time() - start_time,
+            cios_used=state["cios_used"],
+            errors=state["errors"],
+            warnings=state["warnings"]
+        )
+        
+        logger.info(f"Workflow completed in {time.time() - start_time:.2f}s")
+        return response
     
     async def _load_intelligence(self, state: WorkflowState) -> WorkflowState:
-        """Step 2-3: Load all intelligence objects"""
+        """Step 1-3: Load curriculum intelligence and CIOs"""
         logger.info("Step 1-3: Loading curriculum intelligence and CIOs")
         
         request = state["request"]
         
         try:
-            # Load from CSV
             intelligence = self.intelligence_service.load_for_assignment(
                 grade=request.assignment.grade,
                 subject=str(request.assignment.subject.value if request.assignment.subject else request.assignment.subject),
@@ -246,7 +219,6 @@ class RubricGenerationWorkflow:
                     f"Competencies: {len(intelligence.competencies)}"
                 ]
             else:
-                # Use provided intelligence or generate defaults
                 state["concept_intelligence"] = request.concept_intelligence or []
                 state["learning_outcome_intelligence"] = request.learning_outcome_intelligence or []
                 state["competency_intelligence"] = request.competency_intelligence or []
@@ -272,9 +244,9 @@ class RubricGenerationWorkflow:
             )
             state["extracted_outcomes"] = outcomes
             
-            valid, errors = self.outcome_extractor.validate()
+            valid, errors_list = self.outcome_extractor.validate()
             if not valid:
-                state["warnings"].extend(errors)
+                state["warnings"].extend(errors_list)
             
             logger.info(f"Extracted {len(outcomes)} learning outcomes")
             
@@ -335,9 +307,9 @@ class RubricGenerationWorkflow:
             )
             state["generated_criteria"] = criteria
             
-            valid, errors = self.criteria_generator.validate()
+            valid, errors_list = self.criteria_generator.validate()
             if not valid:
-                state["warnings"].extend(errors)
+                state["warnings"].extend(errors_list)
             
             logger.info(f"Generated {len(criteria)} criteria")
             
@@ -393,7 +365,6 @@ class RubricGenerationWorkflow:
         
         try:
             # Calculate marks distribution
-            total = state["request"].assignment.total_marks
             state["marks_distribution"] = {
                 c.criterion_name: c.marks_percentage
                 for c in state["generated_criteria"]
