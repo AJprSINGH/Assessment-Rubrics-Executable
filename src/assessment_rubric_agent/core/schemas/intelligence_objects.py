@@ -74,6 +74,7 @@ class KnowledgeType(str, Enum):
     CONCEPT = "Concept"
     PRINCIPLE = "Principle"
     UNDERSTANDING = "Understanding"
+    DEFINITION = "Definition"
 
 
 class CompetencyLevel(str, Enum):

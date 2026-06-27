@@ -157,30 +157,40 @@ class IntelligenceDataLoader:
     
     def _parse_knowledge_items(self, items: list) -> list[KnowledgeItem]:
         """Parse knowledge items from concept data"""
-        return [
-            KnowledgeItem(
+        result = []
+        for item in items:
+            try:
+                kt = item.get('knowledge_type', 'Fact')
+                knowledge_type = KnowledgeType(kt)
+            except ValueError:
+                knowledge_type = KnowledgeType.FACT
+            result.append(KnowledgeItem(
                 knowledge=item.get('knowledge', ''),
                 statement=item.get('statement', ''),
-                knowledge_type=KnowledgeType(item.get('knowledge_type', 'Fact')),
+                knowledge_type=knowledge_type,
                 confidence=item.get('confidence', 0.9),
                 concept_name=item.get('concept_name', '')
-            )
-            for item in items
-        ]
+            ))
+        return result
     
     def _parse_abilities(self, items: list) -> list[AbilityItem]:
         """Parse ability items from concept data"""
-        return [
-            AbilityItem(
+        result = []
+        for item in items:
+            try:
+                bl = item.get('blooms_level', 'Understand')
+                blooms_level = BloomLevel(bl)
+            except ValueError:
+                blooms_level = BloomLevel.UNDERSTAND
+            result.append(AbilityItem(
                 ability=item.get('ability', ''),
                 verb=item.get('verb', ''),
                 description=item.get('description', ''),
                 knowledge_refs=item.get('knowledge_refs', []),
                 concept_name=item.get('concept_name', ''),
-                blooms_level=BloomLevel(item.get('blooms_level', 'Understand'))
-            )
-            for item in items
-        ]
+                blooms_level=blooms_level
+            ))
+        return result
     
     def _parse_skills(self, items: list) -> list[SkillItem]:
         """Parse skill items from concept data"""
