@@ -66,12 +66,13 @@ class PDFGenerationService:
             logger.info(f"Teacher rubric PDF generated: {output_path}")
             return str(output_path)
             
-        except ImportError:
-            logger.warning("WeasyPrint not available, generating HTML instead")
+        except (ImportError, OSError) as e:
+            # WeasyPrint not available or missing GTK libraries on Windows
+            logger.warning(f"WeasyPrint not available ({e}), generating HTML instead")
             return self._generate_html_fallback(content, request_id, "teacher")
         except Exception as e:
-            logger.error(f"PDF generation failed: {e}")
-            raise
+            logger.warning(f"PDF generation failed ({e}), generating HTML instead")
+            return self._generate_html_fallback(content, request_id, "teacher")
     
     def generate_student_rubric(
         self,
@@ -111,12 +112,13 @@ class PDFGenerationService:
             logger.info(f"Student rubric PDF generated: {output_path}")
             return str(output_path)
             
-        except ImportError:
-            logger.warning("WeasyPrint not available, generating HTML instead")
+        except (ImportError, OSError) as e:
+            # WeasyPrint not available or missing GTK libraries on Windows
+            logger.warning(f"WeasyPrint not available ({e}), generating HTML instead")
             return self._generate_html_fallback(content, request_id, "student")
         except Exception as e:
-            logger.error(f"PDF generation failed: {e}")
-            raise
+            logger.warning(f"PDF generation failed ({e}), generating HTML instead")
+            return self._generate_html_fallback(content, request_id, "student")
     
     def _get_teacher_css(self) -> str:
         """Get CSS for teacher rubric"""

@@ -94,10 +94,14 @@ pip install -r requirements.txt
 
 # 5. Run the demo script
 python run.py
-
-# OR run the API server
-uvicorn src.assessment_rubric_agent.main:app --reload --host 0.0.0.0 --port 8000
 ```
+
+### Windows PDF Generation Note
+
+If you see errors about `gobject-2.0-0` when generating PDFs, this means WeasyPrint's GTK libraries aren't installed. The system will automatically generate HTML files instead, which you can open in any browser and print to PDF manually.
+
+**For native PDF support on Windows**, install GTK3 from:
+- Download from: https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer
 
 ### Running the Demo
 
