@@ -1,30 +1,22 @@
 #!/usr/bin/env python3
 """
-Demo script for Assessment Rubric Agent v0.1
-Tests the complete rubric generation workflow
-
-USAGE:
-    python demo.py        # From project root (recommended)
-    cd scripts && python demo.py  # From scripts folder
-
-NOTE: On Windows, you may need to run from project root:
-    python run.py
+Quick run script for Assessment Rubric Agent v0.1
+Run this from the project root directory.
 """
 
 import sys
 import os
 from pathlib import Path
 
-# Add src directory to path for imports
+# Add src directory to Python path
 script_dir = Path(__file__).parent.resolve()
-project_root = script_dir.parent
-src_dir = project_root / "src"
+src_dir = script_dir / "src"
 
 if str(src_dir) not in sys.path:
     sys.path.insert(0, str(src_dir))
 
-# Also add project root for the CSV file lookup
-os.chdir(project_root)
+# Ensure we're in the project root
+os.chdir(script_dir)
 
 import asyncio
 from datetime import datetime
@@ -44,16 +36,12 @@ async def main():
     print("Assessment Rubric Agent v0.1 - Demo")
     print("=" * 60)
     
-    # Initialize workflow - use CSV from project root
-    csv_path = str(project_root / "semantic_intelligence.csv")
-    if not os.path.exists(csv_path):
-        csv_path = str(project_root / "data" / "semantic_intelligence.csv")
+    # Initialize workflow
+    csv_path = script_dir / "semantic_intelligence.csv"
+    if not csv_path.exists():
+        csv_path = script_dir / "data" / "semantic_intelligence.csv"
     
-    if not os.path.exists(csv_path):
-        print(f"\n⚠ Warning: semantic_intelligence.csv not found at {csv_path}")
-        print("  The system will use default intelligence.")
-    
-    workflow = RubricGenerationWorkflow(csv_path if os.path.exists(csv_path) else "")
+    workflow = RubricGenerationWorkflow(str(csv_path))
     print(f"\n✓ Workflow initialized")
     print(f"  CSV Path: {csv_path}")
     

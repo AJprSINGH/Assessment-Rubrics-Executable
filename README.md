@@ -66,26 +66,71 @@ Every generated rubric criterion is **traceable** to:
 
 ### Prerequisites
 
-- Python 3.12+
+- Python 3.12+ (Python 3.13 recommended)
+- pip package manager
 - Docker (for containerized deployment)
 
-### Installation
+### Local Installation
 
 ```bash
-# Clone repository
+# 1. Clone repository
 git clone <repository-url>
 cd Assessment-Rubrics-Executable
 
-# Create virtual environment
+# 2. Create virtual environment (recommended)
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies
+# On Windows:
+venv\Scripts\activate
+
+# On Linux/Mac:
+source venv/bin/activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Run the application
+# 4. Ensure semantic_intelligence.csv is in the project root
+# (Download from your data source if not present)
+
+# 5. Run the demo script
+python run.py
+
+# OR run the API server
+uvicorn src.assessment_rubric_agent.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Running the Demo
+
+The simplest way to test the system:
+
+```bash
+# From the project root directory
+python run.py
+```
+
+This will:
+1. Initialize the workflow
+2. Generate a sample rubric for "Chemical Reactions Investigation Project"
+3. Output Teacher PDF, Student PDF, and JSON files to `outputs/` folder
+
+### Alternative: Run from scripts folder
+
+```bash
+cd scripts
+python demo.py
+```
+
+### API Server
+
+Start the FastAPI server:
+
+```bash
 uvicorn src.assessment_rubric_agent.main:app --reload
 ```
+
+Then access:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
 
 ### Docker Deployment
 
